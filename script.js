@@ -299,6 +299,29 @@
     track.addEventListener('pointercancel', () => { down = false; });
   })();
 
+  /* ---------- MENU MOBILE ---------- */
+  (() => {
+    const burger = $('#burger'), menu = $('#menu'), nav = $('.nav');
+    $('#menuWpp').setAttribute('href', wa);
+    $$('.menu__links a').forEach((a, i) => a.style.setProperty('--i', i));
+    const set = open => {
+      menu.classList.toggle('open', open); nav.classList.toggle('open', open);
+      menu.setAttribute('aria-hidden', String(!open)); burger.setAttribute('aria-expanded', String(open));
+      burger.setAttribute('aria-label', open ? 'Fechar menu' : 'Abrir menu');
+      if (lenis) open ? lenis.stop() : lenis.start(); else document.body.style.overflow = open ? 'hidden' : '';
+    };
+    burger.addEventListener('click', () => set(!menu.classList.contains('open')));
+    $$('.menu__links a').forEach(a => a.addEventListener('click', e => {
+      e.preventDefault();
+      const t = $(a.getAttribute('href'));
+      set(false);
+      setTimeout(() => { lenis ? lenis.scrollTo(t, { duration: 1.4 }) : t.scrollIntoView({ behavior: 'smooth' }); }, 450);
+    }));
+    $('.menu__foot').addEventListener('click', e => { if (e.target.closest('a')) set(false); });
+    addEventListener('keydown', e => { if (e.key === 'Escape' && menu.classList.contains('open')) set(false); });
+    matchMedia('(min-width: 701px)').addEventListener('change', e => { if (e.matches) set(false); });
+  })();
+
   /* ---------- CURSOR ---------- */
   if (fine && !reduce) {
     const cur = $('#cursor'), label = $('span', cur);
