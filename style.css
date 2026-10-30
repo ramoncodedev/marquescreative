@@ -380,3 +380,22 @@ ul{list-style:none}
   .title .line>span{animation:none;transform:none}
   .rl .line>span,.reveal,.g-item{transition:none;transform:none;opacity:1}
 }
+
+/* ---------- HERO MOBILE: layout em fluxo (sem sobreposição em telas baixas) ---------- */
+@media (max-width:700px){
+  .hero{height:auto;min-height:100svh;display:flex;flex-direction:column;padding:calc(var(--pad) + 4.6rem) var(--gx) calc(var(--pad) + 5rem)}
+  .hero__meta{position:static;order:0;inset:auto;z-index:5}
+  .stack-wrap{position:relative;inset:auto;order:1;height:min(80vw,48svh);min-height:225px;margin:1.2rem 0 0}
+  .stack{width:min(48vw,30svh);min-width:135px;left:50%;top:52%;transform:translate(calc(-50% + 3vw),-50%)}
+  .tags{position:relative;inset:auto;order:2;height:0;z-index:4}
+  .tag{font-size:10px}
+  .tag--mint{--x:50%!important;--y:calc(-1*min(80vw,48svh))!important}
+  .tag--violet{--x:62%!important;--y:-17vw!important}
+  .tag--red{--x:4%!important;--y:17vw!important}
+  .title{position:relative;inset:auto;order:3;padding:0;margin-top:-13vw;z-index:3}
+  .title .l1{font-size:11vw}
+  .title .l2{font-size:15.2vw}
+  .title .l3{font-size:19vw;margin-top:1.4vw}
+  .hero__bottom{position:static;order:4;margin-top:auto;padding-top:1.8rem;inset:auto}
+  .hero__foot{position:static;order:5;margin-top:1.2rem;inset:auto}
+}
